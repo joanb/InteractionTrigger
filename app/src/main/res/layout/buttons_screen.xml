@@ -292,5 +292,12 @@
                     android:focusable="false"
                     android:clickable="false"/>
         </LinearLayout>
+
+        <Chronometer
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chronometer"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"/>
     </LinearLayout>
 </RelativeLayout>

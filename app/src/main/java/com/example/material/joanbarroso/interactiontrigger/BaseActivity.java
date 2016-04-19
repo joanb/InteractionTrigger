@@ -1,5 +1,6 @@
 package com.example.material.joanbarroso.interactiontrigger;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,13 +10,15 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnTouch;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -27,6 +30,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     RelativeLayout relativeLayout;
     @Bind(R.id.toolbar)
     Toolbar toolbar;
+    @Bind(R.id.chronometer)
+    Chronometer chronometer;
+    List<Button> randomButtons;
+    boolean testInProgress;
+    Random random;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,6 +42,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(R.layout.buttons_screen);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        randomButtons =  new ArrayList<>();
+        testInProgress = false;
+        random =  new Random();
 
     }
 
@@ -45,8 +56,17 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(BaseActivity.this, "sda", Toast.LENGTH_SHORT).show();
+        fillArrayWithRandomNumber();
         return false;
+    }
+
+    private void fillArrayWithRandomNumber() {
+        for (int i = 0; i < 20; ++i) {
+            randomButtons.add(allButtons.get(random.nextInt(23)));
+        }
+        setNewButtonToClick();
+        chronometer.start();
+        testInProgress = true;
     }
 
     @OnTouch({R.id.button, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.button6, R.id.button8, R.id.button9, R.id.button10
@@ -54,9 +74,30 @@ public abstract class BaseActivity extends AppCompatActivity {
             , R.id.button20, R.id.button21, R.id.button22, R.id.button23, R.id.button24})
     public boolean buttonPressed(View view, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            Toast.makeText(BaseActivity.this, String.valueOf(view.getId()), Toast.LENGTH_SHORT).show();
+            if (testInProgress) {
+                if (view == randomButtons.get(0)){
+                    randomButtons.get(0).setBackgroundColor(Color.DKGRAY);
+                    randomButtons.remove(0);
+                    relativeLayout.setY(0);
+                    relativeLayout.setX(0);
+                    if (randomButtons.isEmpty()) {
+                        finnishTest();
+                    }
+                    else {
+                        setNewButtonToClick();
+                    }
+                }
+            }
         }
         return true;
+    }
+
+    protected  void finnishTest() {
+        chronometer.stop();
+    }
+
+    protected void setNewButtonToClick() {
+        randomButtons.get(0).setBackgroundColor(Color.GREEN);
     }
 
 }
