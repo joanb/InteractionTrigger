@@ -14,14 +14,13 @@ public class Shrink extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buttons_screen);
         ButterKnife.bind(this);
     }
 
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 y = event.getRawY();
                 break;
@@ -29,8 +28,7 @@ public class Shrink extends BaseActivity {
                 if (event.getSize() > 0.026) {
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#11FF11"));
                     triggered = true;
-                }
-                else
+                } else
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
 
                 Log.v("thisMotion", String.valueOf(event.getSize()));
@@ -38,16 +36,14 @@ public class Shrink extends BaseActivity {
                 break;
             case MotionEvent.ACTION_UP:
                 findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
-                if (y < event.getRawY()+60 && triggered){
+                if (y < event.getRawY() + 60 && triggered) {
                     moveScreenDown();
-                    triggered = false;
-                }
-                else if (y > event.getRawY()+60 && triggered)
+                } else if (y > event.getRawY() + 60 && triggered)
                     moveScreenUp();
-                    triggered = false;
                 break;
         }
-        return false;
+        return super.dispatchTouchEvent(event);
+
     }
 
     private void moveScreenUp() {

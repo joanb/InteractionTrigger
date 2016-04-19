@@ -4,26 +4,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.RelativeLayout;
 
 public class AreaThumbScroll extends BaseActivity {
 
     private float distanceY;
     private float distanceX;
-    RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.buttons_screen);
-        relativeLayout = (RelativeLayout) findViewById(R.id.everything);
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-
                 distanceY = event.getRawY();
                 distanceX = event.getRawX();
                 break;
@@ -43,6 +38,6 @@ public class AreaThumbScroll extends BaseActivity {
                 findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
                 break;
         }
-        return false;
+        return super.dispatchTouchEvent(event);
     }
 }
