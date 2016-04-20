@@ -3,7 +3,7 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
             android:id="@+id/new_game"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/play"
             android:title="none"
             app:showAsAction="ifRoom"/>
 </menu>

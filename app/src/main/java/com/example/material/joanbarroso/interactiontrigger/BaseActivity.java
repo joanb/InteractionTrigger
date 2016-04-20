@@ -35,6 +35,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     List<Button> randomButtons;
     boolean testInProgress;
     Random random;
+    int lastRandomNumber;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,9 +43,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(R.layout.buttons_screen);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-        randomButtons =  new ArrayList<>();
+        randomButtons = new ArrayList<>();
         testInProgress = false;
-        random =  new Random();
+        random = new Random();
 
     }
 
@@ -56,13 +57,27 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        fillArrayWithRandomNumber();
+        prepareAndStartTest();
+        item.setVisible(false);
         return false;
     }
 
-    private void fillArrayWithRandomNumber() {
+    private void prepareAndStartTest() {
+        lastRandomNumber = -1;
         for (int i = 0; i < 20; ++i) {
-            randomButtons.add(allButtons.get(random.nextInt(23)));
+            int randomNumber;
+            if (i%4 == 0){
+                do {
+                    randomNumber = random.nextInt(7);
+                } while (randomNumber == lastRandomNumber);
+            }
+            else {
+                do {
+                    randomNumber = random.nextInt(23);
+                } while (randomNumber == lastRandomNumber);
+            }
+            lastRandomNumber = randomNumber;
+            randomButtons.add(allButtons.get(randomNumber));
         }
         setNewButtonToClick();
         chronometer.start();
@@ -75,15 +90,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     public boolean buttonPressed(View view, MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_UP) {
             if (testInProgress) {
-                if (view == randomButtons.get(0)){
+                if (view == randomButtons.get(0)) {
                     randomButtons.get(0).setBackgroundColor(Color.DKGRAY);
                     randomButtons.remove(0);
                     relativeLayout.setY(0);
                     relativeLayout.setX(0);
                     if (randomButtons.isEmpty()) {
                         finnishTest();
-                    }
-                    else {
+                    } else {
                         setNewButtonToClick();
                     }
                 }
@@ -92,7 +106,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         return true;
     }
 
-    protected  void finnishTest() {
+    protected void finnishTest() {
         chronometer.stop();
     }
 
