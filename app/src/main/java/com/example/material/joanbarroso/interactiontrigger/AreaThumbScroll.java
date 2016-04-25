@@ -9,6 +9,7 @@ public class AreaThumbScroll extends BaseActivity {
 
     private float distanceY;
     private float distanceX;
+    private boolean triggered;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,8 @@ public class AreaThumbScroll extends BaseActivity {
                 distanceX = event.getRawX();
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (event.getSize() > 0.026) {
+                if (event.getSize() > 0.026 || triggered) {
+                    triggered = true;
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#11FF11"));
                     relativeLayout.setX((event.getX()-distanceX)*1.8f);
                     relativeLayout.setY((event.getY()-distanceY)*1.8f);
@@ -36,6 +38,7 @@ public class AreaThumbScroll extends BaseActivity {
                 break;
             case MotionEvent.ACTION_UP:
                 findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
+                triggered =  false;
                 break;
         }
         return super.dispatchTouchEvent(event);
