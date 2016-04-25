@@ -25,4 +25,10 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), Shrink.class));
     }
 
+
+    @OnClick(R.id.webButton)
+    public void onWebClicked() {
+        startActivity(new Intent(getApplicationContext(), WebActivity.class));
+    }
+
 }

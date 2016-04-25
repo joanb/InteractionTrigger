@@ -1,20 +1,30 @@
 package com.example.material.joanbarroso.interactiontrigger;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
-import butterknife.ButterKnife;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
-public class Shrink extends BaseActivity {
+public class WebActivity extends AppCompatActivity {
 
-    float y = 0;
-    boolean triggered = false;
+
+    WebView webview;
+    private boolean triggered;
+    private float y;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_web);
+        webview = ((WebView) findViewById(R.id.webView));
+        webview.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(WebView view, int errorCode, String description, String   failingUrl) {
+
+            }
+        });
+        webview.loadUrl("http://www.google.com");
     }
 
 
@@ -26,20 +36,18 @@ public class Shrink extends BaseActivity {
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (event.getSize() > 0.026) {
-                    findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#11FF11"));
                     triggered = true;
                 } else
-                    findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
 
                 Log.v("thisMotion", String.valueOf(event.getSize()));
                 Log.v("Y", String.valueOf(event.getRawY()));
                 break;
             case MotionEvent.ACTION_UP:
-                findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
                 if (y < event.getRawY() + 60 && triggered) {
                     moveScreenDown();
                 } else if (y > event.getRawY() + 60 && triggered)
                     moveScreenUp();
+                triggered = false;
                 break;
         }
         return super.dispatchTouchEvent(event);
@@ -47,10 +55,10 @@ public class Shrink extends BaseActivity {
     }
 
     private void moveScreenUp() {
-        relativeLayout.setY(0);
+        webview.setY(0);
     }
 
     private void moveScreenDown() {
-        relativeLayout.setY(relativeLayout.getHeight()/2);
+        webview.setY(webview.getHeight()/2);
     }
 }

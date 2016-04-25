@@ -25,8 +25,8 @@ public class AreaThumbScroll extends BaseActivity {
             case MotionEvent.ACTION_MOVE:
                 if (event.getSize() > 0.026) {
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#11FF11"));
-                    relativeLayout.setX(event.getX()-distanceX);
-                    relativeLayout.setY(event.getY()-distanceY);
+                    relativeLayout.setX((event.getX()-distanceX)*1.8f);
+                    relativeLayout.setY((event.getY()-distanceY)*1.8f);
                 }
                 else {
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));

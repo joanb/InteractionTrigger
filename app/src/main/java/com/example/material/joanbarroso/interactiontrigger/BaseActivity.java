@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnTouch;
@@ -32,10 +33,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     Toolbar toolbar;
     @Bind(R.id.chronometer)
     Chronometer chronometer;
+    @Bind (R.id.tempo)
+    TextView tempo;
     List<Button> randomButtons;
     boolean testInProgress;
     Random random;
     int lastRandomNumber;
+    long totallTime;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +85,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         setNewButtonToClick();
         chronometer.start();
+        totallTime =  System.currentTimeMillis();
+        tempo.setText("");
         testInProgress = true;
     }
 
@@ -108,6 +114,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void finnishTest() {
         chronometer.stop();
+        totallTime = (System.currentTimeMillis() - totallTime);
+        tempo.setText(totallTime + "");
     }
 
     protected void setNewButtonToClick() {

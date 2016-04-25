@@ -293,11 +293,28 @@
                     android:clickable="false"/>
         </LinearLayout>
 
-        <Chronometer
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/chronometer"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"/>
+                android:layout_height="wrap_content">
+
+            <Chronometer
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/chronometer"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:layout_weight="1"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="0"
+                    android:id="@+id/tempo"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"/>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
