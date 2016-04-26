@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import butterknife.ButterKnife;
 
-public class Shrink extends BaseActivity {
+public class AreathumbTranslation extends BaseActivity {
 
     float y = 0;
     boolean triggered = false;

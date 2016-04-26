@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
-public class AreaThumbScroll extends BaseActivity {
+public class AreaThumbDrag extends BaseActivity {
 
     private float distanceY;
     private float distanceX;

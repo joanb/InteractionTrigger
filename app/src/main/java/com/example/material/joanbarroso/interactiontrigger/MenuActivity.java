@@ -17,12 +17,12 @@ public class MenuActivity extends AppCompatActivity {
 
     @OnClick(R.id.drag)
     public void onDragClicked() {
-        startActivity(new Intent(getApplicationContext(), AreaThumbScroll.class));
+        startActivity(new Intent(getApplicationContext(), AreaThumbDrag.class));
     }
 
     @OnClick(R.id.transalte)
     public void onTranslateClicked() {
-        startActivity(new Intent(getApplicationContext(), Shrink.class));
+        startActivity(new Intent(getApplicationContext(), AreathumbTranslation.class));
     }
 
 

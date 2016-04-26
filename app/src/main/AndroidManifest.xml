@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.material.joanbarroso.interactiontrigger">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:allowBackup="true"
@@ -11,20 +10,26 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".Shrink">
+        <activity android:name=".AreathumbTranslation">
         </activity>
-        <activity android:name=".AreaThumbScroll">
+        <activity android:name=".AreaThumbDrag">
         </activity>
         <activity android:name=".MenuActivity">
+        </activity>
+        <activity android:name=".BaseActivity">
+        </activity>
+        <activity android:name=".WebActivity">
+        </activity>
+        <activity android:name=".DragRecreation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".BaseActivity">
+        <activity android:name=".Recreation">
         </activity>
-        <activity android:name=".WebActivity">
+        <activity android:name=".TranslationRecreation">
         </activity>
     </application>
 
