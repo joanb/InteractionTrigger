@@ -10,10 +10,18 @@ public class AreaThumbDrag extends BaseActivity {
     private float distanceY;
     private float distanceX;
     private boolean triggered;
+    double size;
+    long time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
+        if (tabletSize) {
+            size = 0.7;
+        } else {
+            size = 0.026;
+        }
     }
 
     @Override
@@ -22,13 +30,17 @@ public class AreaThumbDrag extends BaseActivity {
             case MotionEvent.ACTION_DOWN:
                 distanceY = event.getRawY();
                 distanceX = event.getRawX();
+                time = System.currentTimeMillis();
+                if (event.getSize() > size){
+                    triggered = true;
+                }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (event.getSize() > 0.026 || triggered) {
+                if (event.getSize() > size || triggered) {
                     triggered = true;
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#11FF11"));
-                    relativeLayout.setX((event.getX()-distanceX)*1.8f);
-                    relativeLayout.setY((event.getY()-distanceY)*1.8f);
+                    relativeLayout.setX((event.getX()-distanceX)*2f);
+                    relativeLayout.setY((event.getY()-distanceY)*2f);
                 }
                 else {
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
@@ -38,6 +50,10 @@ public class AreaThumbDrag extends BaseActivity {
                 break;
             case MotionEvent.ACTION_UP:
                 findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
+                if (triggered && System.currentTimeMillis() - time < 150) {
+                    relativeLayout.setY(0);
+                    relativeLayout.setX(0);
+                }
                 triggered =  false;
                 break;
         }

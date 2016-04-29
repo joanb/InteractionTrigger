@@ -15,21 +15,24 @@
         <activity android:name=".AreaThumbDrag">
         </activity>
         <activity android:name=".MenuActivity">
-        </activity>
-        <activity android:name=".BaseActivity">
-        </activity>
-        <activity android:name=".WebActivity">
-        </activity>
-        <activity android:name=".DragRecreation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".BaseActivity">
+        </activity>
+        <activity android:name=".WebActivity">
+        </activity>
+        <activity android:name=".DragRecreation">
+
+        </activity>
         <activity android:name=".Recreation">
         </activity>
         <activity android:name=".TranslationRecreation">
+        </activity>
+        <activity android:name=".NoAreaThumb">
         </activity>
     </application>
 

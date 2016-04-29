@@ -99,8 +99,8 @@ public abstract class BaseActivity extends AppCompatActivity {
                 if (view == randomButtons.get(0)) {
                     randomButtons.get(0).setBackgroundColor(Color.DKGRAY);
                     randomButtons.remove(0);
-                    relativeLayout.setY(0);
-                    relativeLayout.setX(0);
+//                    relativeLayout.setY(0);
+//                    relativeLayout.setX(0);
                     if (randomButtons.isEmpty()) {
                         finnishTest();
                     } else {
@@ -116,6 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         chronometer.stop();
         totallTime = (System.currentTimeMillis() - totallTime);
         tempo.setText(totallTime + "");
+        testInProgress = false;
     }
 
     protected void setNewButtonToClick() {
