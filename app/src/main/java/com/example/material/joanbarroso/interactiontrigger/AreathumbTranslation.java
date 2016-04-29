@@ -12,9 +12,6 @@ public class AreathumbTranslation extends BaseActivity {
     float y = 0;
     boolean triggered = false;
     private double size;
-    private boolean down = false;
-    int width;
-    int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +25,6 @@ public class AreathumbTranslation extends BaseActivity {
         }
 
     }
-
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -61,6 +57,7 @@ public class AreathumbTranslation extends BaseActivity {
     private void moveScreenUp() {
         if (down) {
             down = !down;
+
             relativeLayout.setY(0);
             relativeLayout.setX(0);
             relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(width, height));
@@ -70,9 +67,9 @@ public class AreathumbTranslation extends BaseActivity {
     private void moveScreenDown() {
 
         if (!down) {
+            down = !down;
             width = relativeLayout.getWidth();
             height = relativeLayout.getHeight();
-            down = !down;
             relativeLayout.setY(relativeLayout.getHeight() / 3);
             relativeLayout.setX(relativeLayout.getWidth() / 3);
             relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(((relativeLayout.getWidth() / 3)*2), (relativeLayout.getHeight() / 3)*2));

@@ -23,14 +23,8 @@
         </activity>
         <activity android:name=".BaseActivity">
         </activity>
-        <activity android:name=".WebActivity">
-        </activity>
         <activity android:name=".DragRecreation">
 
-        </activity>
-        <activity android:name=".Recreation">
-        </activity>
-        <activity android:name=".TranslationRecreation">
         </activity>
         <activity android:name=".NoAreaThumb">
         </activity>

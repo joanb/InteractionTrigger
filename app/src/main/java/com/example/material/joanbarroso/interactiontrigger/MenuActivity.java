@@ -26,19 +26,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
 
-    @OnClick(R.id.webButton)
-    public void onWebClicked() {
-        startActivity(new Intent(getApplicationContext(), WebActivity.class));
-    }
-
     @OnClick(R.id.no_effects)
     public void onNoEfectsClicked() {
         startActivity(new Intent(getApplicationContext(), NoAreaThumb.class));
-    }
-
-    @OnClick(R.id.drag_recreation)
-    public void onDragRecreationCLicked() {
-        startActivity(new Intent(getApplicationContext(), DragRecreation.class));
     }
 
 }

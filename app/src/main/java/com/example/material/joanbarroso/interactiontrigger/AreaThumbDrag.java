@@ -28,6 +28,8 @@ public class AreaThumbDrag extends BaseActivity {
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
+                width = relativeLayout.getWidth();
+                height = relativeLayout.getHeight();
                 distanceY = event.getRawY();
                 distanceX = event.getRawX();
                 time = System.currentTimeMillis();
@@ -39,8 +41,8 @@ public class AreaThumbDrag extends BaseActivity {
                 if (event.getSize() > size || triggered) {
                     triggered = true;
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#11FF11"));
-                    relativeLayout.setX((event.getX()-distanceX)*2f);
-                    relativeLayout.setY((event.getY()-distanceY)*2f);
+                    relativeLayout.setX((event.getX()-distanceX)*2.3f);
+                    relativeLayout.setY((event.getY()-distanceY)*2.3f);
                 }
                 else {
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
