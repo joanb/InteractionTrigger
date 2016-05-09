@@ -4,13 +4,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.FrameLayout;
 import butterknife.ButterKnife;
 
-public class AreathumbTranslation extends BaseActivity {
+public class AreathumbTranslationActivity extends BaseActivity {
 
-    float y = 0;
-    boolean triggered = false;
     private double size;
 
     @Override
@@ -48,31 +45,10 @@ public class AreathumbTranslation extends BaseActivity {
                     moveScreenDown();
                 } else if (y > event.getRawY() + 60 && triggered)
                     moveScreenUp();
+                triggered = false;
                 break;
         }
         return super.dispatchTouchEvent(event);
 
-    }
-
-    private void moveScreenUp() {
-        if (down) {
-            down = !down;
-
-            relativeLayout.setY(0);
-            relativeLayout.setX(0);
-            relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(width, height));
-        }
-    }
-
-    private void moveScreenDown() {
-
-        if (!down) {
-            down = !down;
-            width = relativeLayout.getWidth();
-            height = relativeLayout.getHeight();
-            relativeLayout.setY(relativeLayout.getHeight() / 3);
-            relativeLayout.setX(relativeLayout.getWidth() / 3);
-            relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(((relativeLayout.getWidth() / 3)*2), (relativeLayout.getHeight() / 3)*2));
-        }
     }
 }

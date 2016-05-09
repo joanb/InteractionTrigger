@@ -34,8 +34,16 @@
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="NO EFFECTS"
-                android:id="@+id/no_effects"
+                android:text="DOUBLE TAP DRAG"
+                android:id="@+id/double_tap_drag"
+                android:layout_weight="1"
+                android:textSize="30dp"/>
+
+        <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="DOUBLE TAP TRANSALTE"
+                android:id="@+id/double_tap_translate"
                 android:layout_weight="1"
                 android:textSize="30dp"/>
 

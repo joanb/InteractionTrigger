@@ -44,6 +44,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     int width;
     int height;
     boolean down = false;
+    int backCount = 0;
+    boolean triggered = false;
+    float y = 0;
+    protected float distanceY;
+    protected float distanceX;
 
 
     @Override
@@ -72,7 +77,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private void prepareAndStartTest() {
         lastRandomNumber = -1;
-        for (int i = 0; i < 20; ++i) {
+        for (int i = 0; i < 30; ++i) {
             int randomNumber;
             if (i%4 == 0){
                 do {
@@ -109,6 +114,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     randomButtons.remove(0);
                     relativeLayout.setY(0);
                     relativeLayout.setX(0);
+                    backCount = 0;
                     relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(width, height));
                     down = false;
                     if (randomButtons.isEmpty()) {
@@ -133,4 +139,24 @@ public abstract class BaseActivity extends AppCompatActivity {
         randomButtons.get(0).setBackgroundColor(Color.GREEN);
     }
 
+    protected void moveScreenUp() {
+        if (down) {
+            down = !down;
+
+            relativeLayout.setY(0);
+            relativeLayout.setX(0);
+            relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(width, height));
+        }
+    }
+
+    protected void moveScreenDown() {
+        if (!down) {
+            down = !down;
+            width = relativeLayout.getWidth();
+            height = relativeLayout.getHeight();
+            relativeLayout.setY((relativeLayout.getHeight() / 4)*2);
+            relativeLayout.setX((relativeLayout.getWidth() / 4)*2);
+            relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(((relativeLayout.getWidth() / 2)), (relativeLayout.getHeight() / 2)));
+        }
+    }
 }

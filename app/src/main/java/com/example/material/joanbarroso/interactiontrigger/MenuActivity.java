@@ -17,18 +17,23 @@ public class MenuActivity extends AppCompatActivity {
 
     @OnClick(R.id.drag)
     public void onDragClicked() {
-        startActivity(new Intent(getApplicationContext(), AreaThumbDrag.class));
+        startActivity(new Intent(getApplicationContext(), AreaThumbDragActivity.class));
     }
 
     @OnClick(R.id.transalte)
     public void onTranslateClicked() {
-        startActivity(new Intent(getApplicationContext(), AreathumbTranslation.class));
+        startActivity(new Intent(getApplicationContext(), AreathumbTranslationActivity.class));
     }
 
 
-    @OnClick(R.id.no_effects)
-    public void onNoEfectsClicked() {
-        startActivity(new Intent(getApplicationContext(), NoAreaThumb.class));
+    @OnClick(R.id.double_tap_drag)
+    public void onDoubleTapDragClicked() {
+        startActivity(new Intent(getApplicationContext(), DoubleTapDragActivity.class));
+    }
+
+    @OnClick(R.id.double_tap_translate)
+    public void onDoubleTapTranslateClicked() {
+        startActivity(new Intent(getApplicationContext(), DoubleTapTranslationActivity.class));
     }
 
 }

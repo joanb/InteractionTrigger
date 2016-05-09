@@ -5,24 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
-public class AreaThumbDrag extends BaseActivity {
-
-    private float distanceY;
-    private float distanceX;
-    private boolean triggered;
-    double size;
-    long time;
+public class DoubleTapDragActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean tabletSize = getResources().getBoolean(R.bool.isTablet);
-        if (tabletSize) {
-            size = 0.7;
-        } else {
-            size = 0.026;
-        }
     }
+
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
@@ -32,13 +21,9 @@ public class AreaThumbDrag extends BaseActivity {
                 height = relativeLayout.getHeight();
                 distanceY = event.getRawY();
                 distanceX = event.getRawX();
-                time = System.currentTimeMillis();
-                if (event.getSize() > size){
-                    triggered = true;
-                }
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (event.getSize() > size || triggered) {
+                if (triggered) {
                     triggered = true;
                     findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#11FF11"));
                     relativeLayout.setX((event.getX()-distanceX)*2.3f);
@@ -52,13 +37,25 @@ public class AreaThumbDrag extends BaseActivity {
                 break;
             case MotionEvent.ACTION_UP:
                 findViewById(R.id.everything).setBackgroundColor(Color.parseColor("#CCCCCC"));
-                if (triggered && System.currentTimeMillis() - time < 150) {
+                if (!triggered) {
                     relativeLayout.setY(0);
                     relativeLayout.setX(0);
                 }
-                triggered =  false;
+                triggered = false;
                 break;
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        ++backCount;
+        if (backCount == 2) {
+            backCount = 0;
+            triggered = true;
+        }
+        if (triggered) {
+            relativeLayout.setBackgroundColor(Color.parseColor("#11FF11"));
+        }
     }
 }
