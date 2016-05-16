@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -115,6 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                     relativeLayout.setY(0);
                     relativeLayout.setX(0);
                     backCount = 0;
+                    if (width != 0 && height != 0)
                     relativeLayout.setLayoutParams(new FrameLayout.LayoutParams(width, height));
                     down = false;
                     if (randomButtons.isEmpty()) {
@@ -122,6 +124,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                     } else {
                         setNewButtonToClick();
                     }
+                }
+                else {
+                    Log.v ("smth", "stmh");
                 }
             }
         }

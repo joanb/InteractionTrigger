@@ -18,7 +18,7 @@
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="DRAG"
+                android:text="LARGE THUMB DRAG"
                 android:id="@+id/drag"
                 android:layout_weight="1"
                 android:textSize="30dp"/>
@@ -26,7 +26,7 @@
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="TRANSLATE"
+                android:text="LARGE THUMB SHRINK"
                 android:id="@+id/transalte"
                 android:layout_weight="1"
                 android:textSize="30dp"/>
@@ -42,7 +42,7 @@
         <Button
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="DOUBLE TAP TRANSALTE"
+                android:text="DOUBLE TAP SHRINK"
                 android:id="@+id/double_tap_translate"
                 android:layout_weight="1"
                 android:textSize="30dp"/>

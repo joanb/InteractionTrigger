@@ -27,8 +27,6 @@ public class AreaThumbDragActivity extends BaseActivity {
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                width = relativeLayout.getWidth();
-                height = relativeLayout.getHeight();
                 distanceY = event.getRawY();
                 distanceX = event.getRawX();
                 time = System.currentTimeMillis();
@@ -61,15 +59,4 @@ public class AreaThumbDragActivity extends BaseActivity {
         return super.dispatchTouchEvent(event);
     }
 
-    @Override
-    public void onBackPressed() {
-        ++backCount;
-        if(backCount == 2) {
-            backCount = 0;
-            triggered = !triggered;
-        }
-        if (triggered) {
-            relativeLayout.setBackgroundColor(Color.parseColor("#11FF11"));
-        }
-    }
 }
